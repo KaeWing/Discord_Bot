@@ -5,6 +5,8 @@ const Discord = require('discord.js');
 const {Client, MessageAttachment} = require('discord.js');
 const client = new Client();
 
+const token = 'ODI3MjgzODgxOTg3NjcwMDQ2.YGYyJw.vmmXHtiAQx94nzXblx_nYaebuP0';
+
 const prefix = '-'
 
 const fs = require('fs');
@@ -34,8 +36,14 @@ client.on('message', message => {
     if(command === 'ping') {
         client.commands.get('ping').execute(message, args);
     }
+
+    switch(args[0]) {
+        case 'test':
+            const attachment = new MessageAttachment({file: ["./images/slothfull.jpg"]});
+            message.reply('Here is an image', attachment);
+    }
 });
 
 
 // Laungh bot with token
-client.login('ODI3MjgzODgxOTg3NjcwMDQ2.YGYyJw.vmmXHtiAQx94nzXblx_nYaebuP0');
+client.login(token);
