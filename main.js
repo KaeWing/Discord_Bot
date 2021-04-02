@@ -2,7 +2,8 @@ const Discord = require('discord.js');
 
 // const client = new Discord.Client();
 
-const {Client, MessageAttachment} = require('discord.js');
+const {Client, Attachment} = require('discord.js');
+//const {Client, MessageAttachment} = require('discord.js');
 const client = new Client();
 
 const token = 'ODI3MjgzODgxOTg3NjcwMDQ2.YGYyJw.vmmXHtiAQx94nzXblx_nYaebuP0';
@@ -27,6 +28,7 @@ client.once('ready', () => {
 });
 
 client.on('message', message => {
+
     // If bot does not start with prefix or the message is from the bot, do nothing
     if(!message.content.startsWith(prefix) || message.author.bot) return;
     // Slice prefix from message
@@ -37,11 +39,14 @@ client.on('message', message => {
         client.commands.get('ping').execute(message, args);
     }
 
-    switch(args[0]) {
-        case 'test':
-            const attachment = new MessageAttachment({file: ["./images/slothfull.jpg"]});
-            message.reply('Here is an image', attachment);
+    else if(command === 'sloth') {
+        client.commands.get('sloth').execute(message, args);
     }
+
+    else if(command == 'slothtie') {
+        client.commands.get('slothtie').execute(message, args);
+    }
+
 });
 
 
