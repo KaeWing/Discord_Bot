@@ -33,22 +33,32 @@ client.on('message', message => {
     if(!message.content.startsWith(prefix) || message.author.bot) return;
     // Slice prefix from message
     const args = message.content.slice(prefix.length).split(/ +/);
+    // Shift skips the first item of the item, in this case '-' to isolate the command
     const command = args.shift().toLowerCase();
 
     if(command === 'ping') {
         client.commands.get('ping').execute(message, args);
     }
 
-    else if(command === 'sloth') {
+    if(command === 'sloth') {
         client.commands.get('sloth').execute(message, args);
     }
 
-    else if(command == 'slothtie') {
+    if(command == 'slothtie') {
         client.commands.get('slothtie').execute(message, args);
+    } 
+
+    // For this to work, had to install ffmpeg with: npm install @discordjs/opus ffmpeg-static yt-search ytdl-core 
+    if(command === 'play') {
+        client.commands.get('play').execute(message, args);
+    }
+
+    if(command === 'leave') {
+        client.commands.get('leave').execute(message, args);
     }
 
 });
 
 
-// Laungh bot with token
+// Launch bot with token
 client.login(token);
